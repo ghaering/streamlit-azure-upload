@@ -62,9 +62,4 @@ data "azurerm_storage_account_blob_container_sas" "sas" {
     delete = true
     list   = true
   }
-  #cache_control       = "max-age=5"
-  #content_disposition = "inline"
-  #content_encoding    = "deflate"
-  #content_language    = "en-US"
-  #content_type        = "application/json"
 }

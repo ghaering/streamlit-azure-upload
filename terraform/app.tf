@@ -1,5 +1,5 @@
 resource "azurerm_log_analytics_workspace" "app" {
-  name                = "app-workspace"
+  name                = format("%s-app-workspace", var.resource_prefix)
   location            = var.location
   resource_group_name = var.rg_name
   #sku                 = "PerGB2018"
@@ -7,7 +7,7 @@ resource "azurerm_log_analytics_workspace" "app" {
 }
 
 resource "azurerm_container_app_environment" "env" {
-  name                       = "app-environment"
+  name                       = format("%s-app-environment", var.resource_prefix)
   location                   = var.location
   resource_group_name        = var.rg_name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.app.id
@@ -27,7 +27,7 @@ resource "azurerm_container_app" "app" {
 
   template {
     container {
-      name  = "examplecontainerapp"
+      name  = "streamlit-azure-upload"
       image = var.container_image
 
       cpu    = 0.25
